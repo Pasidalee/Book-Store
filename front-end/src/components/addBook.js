@@ -1,15 +1,27 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import  {Form,Button} from 'react-bootstrap';
 import bookService from '../services/bookService';
 
-function AddBook() {
+function AddBook(props) {
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
     const [invoice, setInvoice] = useState();
     const navigate = useNavigate();
+    const [id,setId]=useState(props.id);
+
+    useEffect(() => {
+        bookService.getBookbyId(id).then((response)=>{
+            console.log(response)
+            setName(response.data.name);
+            setAuthor(response.data.author);
+            setPrice(response.data.price);
+            setQuantity(response.data.quantity);
+            setInvoice(response.data.file);
+        }).catch(err=>console.log(err))
+    },[id])
 
     function saveBook(e){
         e.preventDefault();
