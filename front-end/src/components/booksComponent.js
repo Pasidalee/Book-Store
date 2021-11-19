@@ -1,31 +1,23 @@
 import React,{useEffect,useState} from 'react';
 import BookService from '../services/bookService';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function BooksComponent() {
     const [books, setBooks] = useState([]);
-    const BOOKS_BASE_URL='http://localhost:8080/books';
 
     useEffect(() => {
-        axios.get(BOOKS_BASE_URL)
-        .then(res=>{
-            console.log(res.data)
-            setBooks(res.data)
+        BookService.getAllBooks().then((response)=>{
+            setBooks(response.data)
+            console.log(response.data);
         })
-        .catch(err=>{
-            console.log(err)
-        })
-        // BookService.getAllBooks().then((response)=>{
-        //     setBooks(response.data)
-        //     console.log(response.data);
-        // })
-        // .catch(error=>console.log(error))
+        .catch(error=>console.log(error))
     },[])
 
     return (
         <div className="container">
             <h1 className="text-center">List Books</h1>
+            <Link to="/addBook" className="btn btn-secondary mb-2">Add Book</Link>
             <table className="table table-dark table-stripped table-bordered">
                 <thead>
                     <tr>

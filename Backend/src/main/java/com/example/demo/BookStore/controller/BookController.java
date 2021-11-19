@@ -3,6 +3,7 @@ package com.example.demo.BookStore.controller;
 import com.example.demo.BookStore.service.BookService;
 import com.example.demo.BookStore.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ public class BookController {
     @GetMapping(path = "{id}")
     public Book getBook(@PathVariable("id") Long id){return bookService.getBook(id);}
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void addBook(@RequestParam("name") String name,
                         @RequestParam("author") String author,
                         @RequestParam("quantity") int quantity,

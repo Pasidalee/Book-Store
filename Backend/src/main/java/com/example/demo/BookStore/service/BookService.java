@@ -48,7 +48,6 @@ public class BookService{
 
             try{
                 byte[] content=file.getBytes();
-
                 System.out.println(filePath);
                 Files.write(filePath,content);
             } catch (IOException e){
