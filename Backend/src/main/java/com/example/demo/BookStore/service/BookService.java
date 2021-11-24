@@ -3,23 +3,17 @@ package com.example.demo.BookStore.service;
 import com.example.demo.BookStore.entity.Book;
 import com.example.demo.BookStore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,7 +23,6 @@ import java.util.Optional;
 public class BookService{
 
     private final BookRepository bookRepository;
-   // private final Path root= Paths.get("/fileStorage");
 
     @Autowired
     public BookService(BookRepository bookRepository) {
@@ -61,11 +54,6 @@ public class BookService{
                 e.printStackTrace();
             }
 
-//        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-//                .path("/download/")
-//                .path(fileName)
-//                .toUriString();
-
 
             Book bookToSave=new Book(name,author,quantity,price,filePath.toString());
             bookRepository.save(bookToSave);
@@ -94,6 +82,19 @@ public class BookService{
             bookDb.setQuantity(quantity);
         }
 
+        String filename=file.getOriginalFilename();
+        Path filePath=Paths.get("/fileStorage",filename).toAbsolutePath();
+
+        try{
+            byte[] content=file.getBytes();
+            System.out.println(filePath);
+            Files.write(filePath,content);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        bookDb.setInvoice(filePath.toString());
+
         bookRepository.save(bookDb);
     }
 
@@ -108,19 +109,6 @@ public class BookService{
             e.printStackTrace();
         }
         return resource;
-
-//        try {
-//
-//
-//            if (resource.exists() || resource.isReadable()) {
-//                return resource;
-//            } else {
-//                throw new RuntimeException("Could not read the file!");
-//            }
-//        } catch (MalformedURLException e) {
-//            throw new RuntimeException("Error: " + e.getMessage());
-//        }
-
 
     }
 

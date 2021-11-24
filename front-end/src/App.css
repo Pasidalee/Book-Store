@@ -27,3 +27,18 @@
 .vwbk:hover{
   color: white;
 }
+
+.ft{
+  font-size: 16px !important;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  margin-top: 50px;
+}
+
+/* .cc{
+  margin-top: 50px;
+} */
+.bv{
+  margin-bottom: 230px;
+}

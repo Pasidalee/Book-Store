@@ -1,9 +1,6 @@
 package com.example.demo.BookStore.entity;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table

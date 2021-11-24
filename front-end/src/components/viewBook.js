@@ -17,21 +17,9 @@ function ViewBook() {
         .catch(err=>console.log(err))
     }, [id])
 
-    function viewFile(id){
-        bookService.getFile(id).then((resp)=>{
-            resp.blob();        
-        })
-        .then((blob)=>{
-             const url = window.URL.createObjectURL(
-            new Blob([blob]),
-    );
-        })
-        .catch((err)=>console.log(err))
-    }
-
 
     return (
-        <div>
+        <div className="bv">
             <h1 className="text-center mt-5">Book Details</h1>
             <table className="table no-border table-dark table-striped aa">
                 <tbody>

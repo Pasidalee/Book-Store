@@ -33,9 +33,20 @@ function AddBook(props) {
         formData.append("file",invoice)
         console.log(formData);
         if(id){
+            props.onHide();
             bookService.updateBook(id,formData).then((response)=>{
                 console.log(response.data);
                 navigate('/books');
+                bookService.getBookbyId(id).then((resp)=>{
+                    let oldBookData = JSON.parse(JSON.stringify(props.books))
+                    for(var i=0; i < oldBookData.length; i++){
+                        if(oldBookData[i].id === id){
+                            oldBookData[i] = resp.data;
+                            break;
+                        }
+                    }
+                    props.setBooks(oldBookData);
+                })
             })
             .catch(error=>console.log(error))
 

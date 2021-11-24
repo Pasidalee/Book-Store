@@ -3,10 +3,13 @@ import BooksComponent from './components/booksComponent';
 import AddBook from './components/addBook';
 import ViewBook from './components/viewBook';
 import './App.css';
+import Footer from './components/footer';
+import Header from './components/header';
 
 function App() {
   return (
     <div className="App">
+      <Header/>
       <BrowserRouter>
         
           <Routes>
@@ -18,7 +21,7 @@ function App() {
           </Routes>
         
       </BrowserRouter>
-
+      <Footer/>
     </div> 
   );
 }

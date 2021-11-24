@@ -15,7 +15,7 @@ function UpdateData(props){
           centered
         >
           <Modal.Body>
-            <AddBook id={props.id}/>
+            <AddBook id={props.id} onHide={props.onHide} books={props.books} setBooks={props.setBooks} />
           </Modal.Body>
           <Modal.Footer><Button onClick={props.onHide} variant="dark">Cancel</Button></Modal.Footer>
         </Modal>
@@ -58,7 +58,7 @@ function BooksComponent() {
 
     return (
         <div className="container">
-            <h1 className="text-center mt-5">All Books</h1>
+            <h1 className="text-center mt-3">All Books</h1>
             <Link to="/addBook" className="btn btn-secondary mb-2">Add Book</Link>
             <table className="table table-dark table-stripped">
                 <thead>
@@ -95,6 +95,8 @@ function BooksComponent() {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 id={id}
+                books={books}
+                setBooks={setBooks}
             />
             
         </div>
