@@ -5,3 +5,25 @@
 .bd{
   font-weight: bold;
 }
+
+.table {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.tb{
+  font-weight: bold;
+}
+
+.aa{
+  width: 50% !important;
+}
+
+.vwbk{
+  text-decoration: none;
+  color: white;
+}
+
+.vwbk:hover{
+  color: white;
+}

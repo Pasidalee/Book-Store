@@ -21,9 +21,9 @@ function AddBook(props) {
             setQuantity(response.data.quantity);
             setInvoice(response.data.file);
         }).catch(err=>console.log(err))
-    },[id])
+    },[])
 
-    function saveBook(e){
+    function saveBookorUpdate(e){
         e.preventDefault();
         const formData=new FormData();
         formData.append("name",name);
@@ -32,17 +32,46 @@ function AddBook(props) {
         formData.append("quantity",quantity);
         formData.append("file",invoice)
         console.log(formData);
-        bookService.saveBook(formData).then((response)=>{
+        if(id){
+            bookService.updateBook(id,formData).then((response)=>{
+                console.log(response.data);
+                navigate('/books');
+            })
+            .catch(error=>console.log(error))
+
+        }else{
+            bookService.saveBook(formData).then((response)=>{
             console.log(response.data);
             navigate('/books');
-        })
-        .catch(error=>console.log(error))
+            })
+            .catch(error=>console.log(error))
+        }
+        
+    }
+
+    const title=()=>{
+        if(id){
+            return <h2 className="text-center">Update Book</h2>
+        }
+        else {
+            return <h2 className="text-center mt-5">Add new Book</h2>
+        }
+    }
+
+    const submitorUpdate=()=>{
+        if(id){
+            return <Button variant="dark" type="submit" onClick={(e)=>saveBookorUpdate(e)}>Update</Button>
+        }
+        else {
+            return <Button variant="dark" type="submit" onClick={(e)=>saveBookorUpdate(e)}>Submit</Button>
+        }
     }
 
     return (
         <div>
             <div className="container">
-                <h2 className="text-center">Add new Book</h2>
+                { title() }              
+                
                 <Form>
                     <Form.Group className="mb-3" controlId="bookname">
                         <Form.Label>Book Name</Form.Label>
@@ -92,9 +121,7 @@ function AddBook(props) {
                             onChange={(e)=>setInvoice(e.target.files[0])}
                         />
                     </Form.Group>
-                    <Button variant="secondary" type="submit" onClick={(e)=>saveBook(e)}>
-                        Submit
-                    </Button>
+                    {submitorUpdate()}
                 </Form>
             </div>
         </div>

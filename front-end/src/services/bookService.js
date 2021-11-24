@@ -11,8 +11,19 @@ class BookService{
         return axios.post(BOOKS_BASE_URL,formData);
     }
     getBookbyId(bookId){
-        console.log(bookId);
         return axios.get(BOOKS_BASE_URL+'/'+bookId);
+    }
+
+    updateBook(bookId,formData){
+        return axios.put(BOOKS_BASE_URL+'/'+bookId,formData);
+    }
+
+    deleteBook(bookId){
+        return axios.delete(BOOKS_BASE_URL+'/'+bookId);
+    }
+
+    getFile(bookId){
+        return axios.get(BOOKS_BASE_URL+'/invoice/'+bookId);
     }
 }
 
