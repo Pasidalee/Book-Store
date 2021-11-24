@@ -22,9 +22,6 @@ class BookService{
         return axios.delete(BOOKS_BASE_URL+'/'+bookId);
     }
 
-    getFile(bookId){
-        return axios.get(BOOKS_BASE_URL+'/invoice/'+bookId);
-    }
 }
 
 export default new BookService();
