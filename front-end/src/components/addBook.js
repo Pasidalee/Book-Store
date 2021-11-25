@@ -38,6 +38,7 @@ function AddBook(props) {
                 console.log(response.data);
                 navigate('/books');
                 bookService.getBookbyId(id).then((resp)=>{
+                    console.log(resp.data);
                     let oldBookData = JSON.parse(JSON.stringify(props.books))
                     for(var i=0; i < oldBookData.length; i++){
                         if(oldBookData[i].id === id){

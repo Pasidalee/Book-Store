@@ -60,7 +60,7 @@ function BooksComponent() {
         <div className="container">
             <h1 className="text-center mt-3">All Books</h1>
             <Link to="/addBook" className="btn btn-secondary mb-2">Add Book</Link>
-            <table className="table table-dark table-stripped">
+            <table className="table table-dark table-stripped table-hover">
                 <thead>
                     <tr>
                     <th scope="col">Book Name</th>

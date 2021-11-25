@@ -2,6 +2,10 @@
   border: none;
 }
 
+.table-dark #updel{
+--bs-table-hover-bg: white;
+}
+
 .bd{
   font-weight: bold;
 }
@@ -28,11 +32,16 @@
   color: white;
 }
 
+.vwinv{
+  width: 100%;
+  position: relative;
+}
+
 .ft{
   font-size: 16px !important;
   bottom: 0;
   width: 100%;
-  color: white;
+  color: rgba(245, 235, 235, 0.527);
   margin-top: 50px;
 }
 
@@ -41,4 +50,9 @@
 } */
 .bv{
   margin-bottom: 230px;
+}
+
+.dc{
+  max-width: 100% !important;
+  position: relative;
 }

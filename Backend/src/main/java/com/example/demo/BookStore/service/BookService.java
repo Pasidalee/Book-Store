@@ -82,6 +82,7 @@ public class BookService{
             bookDb.setQuantity(quantity);
         }
 
+        if(file!=null){
         String filename=file.getOriginalFilename();
         Path filePath=Paths.get("/fileStorage",filename).toAbsolutePath();
 
@@ -94,6 +95,7 @@ public class BookService{
         }
 
         bookDb.setInvoice(filePath.toString());
+        }
 
         bookRepository.save(bookDb);
     }
